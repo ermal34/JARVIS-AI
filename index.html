@@ -587,7 +587,43 @@ jarvis(
 );
 
 input.focus();
+// JARVIS Suchfunktionen
+function jarvisSearch(type) {
+    const query = prompt("Was soll JARVIS suchen?");
+    if (!query) return;
 
+    const q = encodeURIComponent(query);
+
+    if (type === "google") {
+        window.open("https://www.google.com/search?q=" + q, "_blank");
+    }
+
+    if (type === "bilder") {
+        window.open("https://www.google.com/search?tbm=isch&q=" + q, "_blank");
+    }
+
+    if (type === "youtube") {
+        window.open("https://www.youtube.com/results?search_query=" + q, "_blank");
+    }
+}
+
+// Suchbuttons automatisch hinzufügen
+const searchBox = document.createElement("div");
+searchBox.style.cssText = `
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:12px 0;
+`;
+
+searchBox.innerHTML = `
+    <button onclick="jarvisSearch('google')">🔎 Google</button>
+    <button onclick="jarvisSearch('bilder')">🖼️ Bilder</button>
+    <button onclick="jarvisSearch('youtube')">▶️ YouTube</button>
+`;
+
+document.body.appendChild(searchBox);
 </script>
 
 </body>
